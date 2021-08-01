@@ -1,14 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from "reactstrap";
 
-class DishDetail extends Component{
-    constructor(props) {
-        super(props);
-
-        console.log(props);
-    }
-
-    renderDish(dish) {
+    function RenderDish({dish}) {
 
         if (dish != null) {
             return (
@@ -30,7 +23,7 @@ class DishDetail extends Component{
         }
     }
 
-    renderComments(comments){
+    function RenderComments({comments}){
         if (comments == null) {
             return (<div></div>)
         }
@@ -61,8 +54,8 @@ class DishDetail extends Component{
     }
 
 
-    render(){
-        const dish = this.props.dish
+    const DishDetail = (props) =>{
+        const dish = props.dish
 
         console.log(dish);
         
@@ -70,19 +63,14 @@ class DishDetail extends Component{
             return (<div></div>);
         }
 
-        const dishItem = this.renderDish(dish);
-        const dishComment = this.renderComments(dish.comments);
-
         return (
             <div class="container">
                 <div className='row'>
-                    {dishItem}
-                    {dishComment}
+                    <RenderDish dish={props.dish} />
+                    <RenderComments comments={props.dish.comments} />
                 </div>
             </div>
         )
     }
-
-}
 
 export default DishDetail;
